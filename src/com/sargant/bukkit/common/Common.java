@@ -3,6 +3,8 @@ package com.sargant.bukkit.common;
 import java.util.List;
 
 import org.bukkit.*;
+import org.bukkit.entity.*;
+import org.bukkit.entity.Entity;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -59,6 +61,24 @@ public class Common {
 		case BLACK: return 0x0;
 		default: return 0x0;
 		}
+	}
+	
+	static public CreatureType getCreatureType(Entity e) {
+		
+		if(e instanceof Chicken)   { return CreatureType.CHICKEN; }
+		if(e instanceof Cow)       { return CreatureType.COW; }
+		if(e instanceof Creeper)   { return CreatureType.CREEPER; }
+		if(e instanceof Ghast)     { return CreatureType.GHAST; }
+		if(e instanceof Pig)       { return CreatureType.PIG; }
+		if(e instanceof PigZombie) { return CreatureType.PIG_ZOMBIE; }
+		if(e instanceof Sheep)     { return CreatureType.SHEEP; }
+		if(e instanceof Skeleton)  { return CreatureType.SKELETON; }
+		if(e instanceof Slime)     { return CreatureType.SLIME; }
+		if(e instanceof Spider)    { return CreatureType.SPIDER; }
+		if(e instanceof Squid)     { return CreatureType.SQUID; }
+		if(e instanceof Zombie)    { return CreatureType.ZOMBIE; }
+		
+		return null;
 	}
 
 	static public List<String> getRootKeys(JavaPlugin plugin) {
