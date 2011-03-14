@@ -10,14 +10,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Common {
 	
-	static public short getFixedMaxDurability(Material m) {
-		// If the maxstacksize is -1, then the values are the wrong way round
-		return (short) ((m.getMaxStackSize() < 1) ? m.getMaxStackSize() : m.getMaxDurability());
-	}
+	//static public short getFixedMaxDurability(Material m) {
+	//	// If the maxstacksize is -1, then the values are the wrong way round
+	//	return (short) ((m.getMaxStackSize() < 1) ? m.getMaxStackSize() : m.getMaxDurability());
+	//}
 
-	static public int getFixedMaxStackSize(Material m) {
-		return ((m.getMaxStackSize() < 1) ? m.getMaxDurability() : m.getMaxStackSize());
-	}
+	//static public int getFixedMaxStackSize(Material m) {
+	//	return ((m.getMaxStackSize() < 1) ? m.getMaxDurability() : m.getMaxStackSize());
+	//}
 	
 	static public short getWoolColor(DyeColor color) {
 		switch (color) {
