@@ -1,23 +1,16 @@
 package com.sargant.bukkit.common;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.bukkit.*;
 import org.bukkit.entity.*;
-import org.bukkit.entity.Entity;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Common {
-	
-	//static public short getFixedMaxDurability(Material m) {
-	//	// If the maxstacksize is -1, then the values are the wrong way round
-	//	return (short) ((m.getMaxStackSize() < 1) ? m.getMaxStackSize() : m.getMaxDurability());
-	//}
-
-	//static public int getFixedMaxStackSize(Material m) {
-	//	return ((m.getMaxStackSize() < 1) ? m.getMaxDurability() : m.getMaxStackSize());
-	//}
 	
 	static public short getWoolColor(DyeColor color) {
 		switch (color) {
@@ -120,5 +113,36 @@ public class Common {
 		else if(priority_string.equalsIgnoreCase("highest")) { return Priority.Highest; }
 		
 		return Priority.Lowest;
+	}
+	
+	static public boolean isSynonym(String syn_name, Material mat) {
+		
+		Map<String, List<Material>> synonyms = new HashMap<String, List<Material>>();
+
+		// Blocks
+		synonyms.put("ANY_FURNACE",			Arrays.asList(Material.FURNACE, Material.BURNING_FURNACE));
+		synonyms.put("ANY_SIGN",			Arrays.asList(Material.SIGN, Material.SIGN_POST, Material.WALL_SIGN));
+		synonyms.put("ANY_REDSTONE_ORE",	Arrays.asList(Material.REDSTONE_ORE, Material.GLOWING_REDSTONE_ORE));
+		synonyms.put("ANY_REDSTONE_TORCH",	Arrays.asList(Material.REDSTONE_TORCH_OFF, Material.REDSTONE_TORCH_ON));
+		synonyms.put("ANY_DIODE_BLOCK",		Arrays.asList(Material.DIODE_BLOCK_OFF, Material.DIODE_BLOCK_ON));
+		
+		// Tools
+		synonyms.put("ANY_SPADE",	Arrays.asList(Material.WOOD_SPADE, Material.STONE_SPADE, Material.GOLD_SPADE, Material.IRON_SPADE, Material.DIAMOND_SPADE));
+		synonyms.put("ANY_AXE", 	Arrays.asList(Material.WOOD_AXE, Material.STONE_AXE, Material.GOLD_AXE, Material.IRON_AXE, Material.DIAMOND_AXE));
+		synonyms.put("ANY_HOE", 	Arrays.asList(Material.WOOD_HOE, Material.STONE_HOE, Material.GOLD_HOE, Material.IRON_HOE, Material.DIAMOND_HOE));
+		synonyms.put("ANY_PICKAXE",	Arrays.asList(Material.WOOD_PICKAXE, Material.STONE_PICKAXE, Material.GOLD_PICKAXE, Material.IRON_PICKAXE, Material.DIAMOND_PICKAXE));
+		synonyms.put("ANY_SWORD",	Arrays.asList(Material.WOOD_SWORD, Material.STONE_SWORD, Material.GOLD_SWORD, Material.IRON_SWORD, Material.DIAMOND_SWORD));
+		
+		// Armour
+		synonyms.put("ANY_HELMET",		Arrays.asList(Material.LEATHER_HELMET, Material.CHAINMAIL_HELMET, Material.GOLD_HELMET, Material.IRON_HELMET, Material.DIAMOND_HELMET));
+		synonyms.put("ANY_CHESTPLATE",	Arrays.asList(Material.LEATHER_CHESTPLATE, Material.CHAINMAIL_CHESTPLATE, Material.GOLD_CHESTPLATE, Material.IRON_CHESTPLATE, Material.DIAMOND_CHESTPLATE));
+		synonyms.put("ANY_LEGGINGS",	Arrays.asList(Material.LEATHER_LEGGINGS, Material.CHAINMAIL_LEGGINGS, Material.GOLD_LEGGINGS, Material.IRON_LEGGINGS, Material.DIAMOND_LEGGINGS));
+		synonyms.put("ANY_BOOTS",		Arrays.asList(Material.LEATHER_BOOTS, Material.CHAINMAIL_BOOTS, Material.GOLD_BOOTS, Material.IRON_BOOTS, Material.DIAMOND_BOOTS));
+		
+		for(Map.Entry<String, List<Material>> entry : synonyms.entrySet()) {
+			if(!entry.getKey().equalsIgnoreCase(syn_name)) continue;
+			if(entry.getValue().contains(mat)) return true;
+		}
+		return false;
 	}
 }
