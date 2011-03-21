@@ -92,4 +92,29 @@ public final class CommonMaterial {
 		default: return 0x0;
 		}
 	}
+	
+	public static short getAnyDataShort(Material material, String enumValue) throws IllegalArgumentException {
+		switch(material) {
+		case LOG:
+		case LEAVES:
+			return (short) TreeSpecies.valueOf(enumValue).getData();
+		case WOOL:
+			return (short) DyeColor.valueOf(enumValue).getData();
+		case INK_SACK:
+			return (short) (0xF - DyeColor.valueOf(enumValue).getData());
+		case COAL:
+			return (short) (CoalType.valueOf(enumValue).getData());
+		case CROPS:
+			return (short) (CropState.valueOf(enumValue).getData());
+		case DOUBLE_STEP:
+		case STEP:
+			if(enumValue.equalsIgnoreCase("STONE")) return 0;
+			else if(enumValue.equalsIgnoreCase("SANDSTONE")) return 1;
+			else if(enumValue.equalsIgnoreCase("WOOD")) return 2;
+			else if(enumValue.equalsIgnoreCase("COBBLESTONE")) return 3;
+			else throw new IllegalArgumentException();			
+		default:
+			return Short.parseShort(enumValue);
+		}
+	}
 }
