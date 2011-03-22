@@ -94,6 +94,13 @@ public final class CommonMaterial {
 	}
 	
 	public static short getAnyDataShort(Material material, String enumValue) throws IllegalArgumentException {
+		// Firstly, can the string be cast directly as a short?
+		try {
+			Short s = Short.parseShort(enumValue);
+			return s;
+		} catch(NumberFormatException ex) {}
+		
+		// If not, test the enums
 		switch(material) {
 		case LOG:
 		case LEAVES:
@@ -114,7 +121,7 @@ public final class CommonMaterial {
 			else if(enumValue.equalsIgnoreCase("COBBLESTONE")) return 3;
 			else throw new IllegalArgumentException();			
 		default:
-			return Short.parseShort(enumValue);
+			return 0;
 		}
 	}
 }
