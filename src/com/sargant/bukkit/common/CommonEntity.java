@@ -10,6 +10,8 @@ public class CommonEntity {
 		if(e instanceof Cow)       return CreatureType.COW;
 		if(e instanceof Creeper)   return CreatureType.CREEPER;
 		if(e instanceof Ghast)     return CreatureType.GHAST;
+		if(e instanceof Giant)     return CreatureType.GIANT;
+		if(e instanceof Monster)   return CreatureType.MONSTER;
 		if(e instanceof Pig)       return CreatureType.PIG;
 		if(e instanceof PigZombie) return CreatureType.PIG_ZOMBIE;
 		if(e instanceof Sheep)     return CreatureType.SHEEP;
